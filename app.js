@@ -33,6 +33,7 @@ app.use('/uploads', (req, res, next) => {
 
   if (securityLevel === 2) {
     if (req.url.match(/\.(png|jpg|jpeg|gif)$/i)) {
+      console.log(securityLevel)
       res.setHeader('Content-Type', 'image/svg+xml');
     }
   }

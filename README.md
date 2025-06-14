@@ -63,6 +63,8 @@ J'ai donc fait un fichier .svg avec le code suivant :
 ```
 Le script s'exécute dès l'affichage car le SVG est directement rendu via index.ejs.
 
+![Niveau 0](Niveau0 "n0.png")
+
 # 🚧 Niveau 1
 
 Un filtrage basique est appliqué côté client : seules certaines extensions sont autorisées (.png, .jpg, etc.).

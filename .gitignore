@@ -3,3 +3,4 @@ uploads/*
 !uploads/.gitkeep
 node_modules/
 poly.py
+xss_polyglot.png
