@@ -1,0 +1,13 @@
+<h1>Upload Lab</h1>
+
+<form method="POST" enctype="multipart/form-data" action="/upload">
+  <input type="file" name="file" required>
+  <button type="submit">Upload</button>
+</form>
+
+<p>Sécurité actuelle : <strong>Niveau <%= level %></strong></p>
+
+<% if (file) { %>
+  <h2>Fichier uploadé :</h2>
+  <iframe src="<%= file %>" width="400" height="300"></iframe>
+<% } %>
