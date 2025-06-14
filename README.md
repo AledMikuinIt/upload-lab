@@ -48,7 +48,7 @@ Ce projet est un laboratoire de test avec plusieurs niveaux de vulnérabilités 
    npm run dev
 
 
-Note : Assurez-vous que la variables .env est correctement configurée.
+Note : Assurez-vous que la variable .env est correctement configurée.
 
 ## 🧠 Explication du fonctionnement
 
@@ -63,7 +63,7 @@ J'ai donc fait un fichier .svg avec le code suivant :
 ```
 Le script s'exécute dès l'affichage car le SVG est directement rendu via index.ejs.
 
-![Niveau 0](Niveau0 "n0.png")
+![Niveau 0](n0.PNG)
 
 # 🚧 Niveau 1
 
@@ -72,7 +72,7 @@ Un filtrage basique est appliqué côté client : seules certaines extensions so
 Pour contourner cette protection, il suffit de déguiser un fichier malveillant, par exemple :
 
 - Fichier d'origine : xss.svg
-- Fichier contourné : xss.svg.jpg
+- Fichier déguisé : xss.svg.jpg
 
 Ensuite, un header Content-Type est forcé dans le code (démo uniquement) :
 
@@ -81,7 +81,10 @@ Ensuite, un header Content-Type est forcé dans le code (démo uniquement) :
     res.setHeader('Content-Type', 'image/svg+xml'); 
   }
 ```
-Cela permet au navigateur d’interpréter le contenu comme un SVG et d’exécuter le code malveillant.
+Cela permet au navigateur d’interpréter le contenu comme un SVG et d’exécuter le code malveillant. 
+Ce qui est assez courant dans des applications réelles pour permettre d'être plus flexible dans l'affichage des images.
+
+![Niveau 1](n1.PNG)
 
 # 🔬 Niveau 2
 
@@ -98,10 +101,30 @@ Cela permet de tromper la détection tout en conservant un comportement exploita
 # 🛡️ Niveau 3
 
 Ajout de protections supplémentaires :
-- Forçage du Content-Type: text/plain pour désactiver tout rendu HTML/SVG. Donc le code sera pas éxécuté mais juste affiché comme du texte.
+- Forçage du Content-Type: text/plain pour désactiver tout rendu HTML/SVG. Le code ne sera donc pas exécuté, mais simplement affiché en clair.
 - Header X-Content-Type-Options: nosniff pour empêcher l'interprétation automatique par le navigateur.
 
 Ces mécanismes bloquent l’exécution de scripts embarqués, même en cas d’upload réussi.
+
+
+# 📊 Tableau comparatif 
+
+
+| Niveau | Filtrage extension | Vérif. MIME | Protection navigateur | Exécution possible |
+|--------|--------------------|-------------|------------------------|--------------------|
+| 0      | ❌                 | ❌          | ❌                     | ✅                 |
+| 1      | ✅ (client only)   | ❌          | ❌                     | ✅ (via header)    |
+| 2      | ✅                 | ✅          | ❌                     | ✅ (polyglotte)    |
+| 3      | ✅                 | ✅          | ✅                     | ❌                 |
+
+
+
+## 🕵️ Cas d’usage réel
+
+Des failles d’upload mal sécurisé sont souvent utilisées pour :
+- Uploader des webshells ou reverse shells sur un serveur
+- Exécuter du code JS dans le navigateur d’un admin (via SVG/XSS)
+- Réaliser des attaques SSRF ou LFI en contournant les protections MIME
 
 
 ## ✅ Résumé
