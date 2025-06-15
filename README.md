@@ -18,7 +18,7 @@ Ce projet est un laboratoire de test avec plusieurs niveaux de vulnérabilités 
 - Niveau 0 : Aucun filtre
 - Niveau 1 : Filtrage par extension (client)
 - Niveau 2 : Vérification du type MIME (serveur)
-- Niveau 3 : Sécurisation du rendu + nom aléatoire + validation stricte
+- Niveau 3 : Sécurisation du rendu
 
 ---
 
@@ -46,7 +46,6 @@ Ce projet est un laboratoire de test avec plusieurs niveaux de vulnérabilités 
 
    ```bash
    npm run dev
-
 
 Note : Assurez-vous que la variable .env est correctement configurée.
 
@@ -97,6 +96,7 @@ Exemple de contournement : un fichier polyglotte PNG/SVG :
 - Généré via un script Python.
 
 Cela permet de tromper la détection tout en conservant un comportement exploitable côté client.
+Ici le niveau 2 n'est pas bypassable (du moins je n'ai pas réussi) car le JS n'est jamais éxécuté côté client.
 
 # 🛡️ Niveau 3
 

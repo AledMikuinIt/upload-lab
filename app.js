@@ -2,7 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const dotenv = require('dotenv'); // tout en haut
+const dotenv = require('dotenv');
 
 dotenv.config();
 const app = express();
@@ -19,27 +19,19 @@ const upload = multer({ storage });
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 
-const staticMiddleware = express.static('uploads');
-// Middleware pour changer Content-Type selon niveau et fichier
-app.use('/uploads', (req, res, next) => {
+app.get('/uploads/:filename', (req, res) => {
+  const filePath = path.join(__dirname, 'uploads', req.params.filename);
+  if (!fs.existsSync(filePath)) return res.status(404).send('Fichier introuvable');
 
-  // Juste pour la demo/bypass
+  const ext = path.extname(filePath).toLowerCase();
 
   if (securityLevel === 1) {
-    res.setHeader('Content-Type', 'image/svg+xml'); 
+    res.setHeader('Content-Type', 'image/svg+xml'); // Juste pour la demo/bypass
   }
 
-  // Juste pour la demo/bypass
-
-  if (securityLevel === 2) {
-    if (req.url.match(/\.(png|jpg|jpeg|gif)$/i)) {
-      console.log(securityLevel)
-      res.setHeader('Content-Type', 'image/svg+xml');
-    }
-  }
-  staticMiddleware(req, res, next);
-
+  fs.createReadStream(filePath).pipe(res);
 });
+
 
 app.get('/', (req, res) => {
   res.render('index', { file: null, level: securityLevel });
