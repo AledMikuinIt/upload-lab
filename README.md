@@ -95,8 +95,17 @@ Exemple de contournement : un fichier polyglotte PNG/SVG :
 - Le contenu reste du SVG malveillant.
 - Généré via un script Python.
 
-Cela permet de tromper la détection tout en conservant un comportement exploitable côté client.
-Ici le niveau 2 n'est pas bypassable (du moins je n'ai pas réussi) car le JS n'est jamais éxécuté côté client.
+Cela permet de tromper la détection côté serveur et d’uploader un fichier malveillant. 
+En revanche, comme le fichier est interprété comme une image PNG par le navigateur,
+le JavaScript contenu dans le SVG n’est **pas exécuté**. Cela illustre qu’un bypass MIME ne suffit pas à compromettre un client si le navigateur suit bien le type MIME.
+
+📎 Note : Pour rendre l'attaque exploitable (ex. XSS), il faudrait une configuration côté serveur 
+qui serve le fichier avec `Content-Type: image/svg+xml` malgré le bypass MIME mais aussi avoir le rendu sur le navigauteur — 
+ce qui serait une mauvaise pratique.
+
+### Exemple Polyglotte
+Ici j'ai modifié le svg pour lui donner une signature (magic bytes) png `89 50 4E 47 0D 0A 1A 0A`.
+![Niveau 0](n2.PNG)
 
 # 🛡️ Niveau 3
 
