@@ -105,7 +105,8 @@ ce qui serait une mauvaise pratique.
 
 ### Exemple Polyglotte
 Ici j'ai modifié le svg pour lui donner une signature (magic bytes) png `89 50 4E 47 0D 0A 1A 0A`.
-![Niveau 0](n2.PNG)
+
+![Niveau 2](n2.png)
 
 # 🛡️ Niveau 3
 
