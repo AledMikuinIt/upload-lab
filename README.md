@@ -108,7 +108,7 @@ Ici j'ai modifié le svg pour lui donner une signature (magic bytes) png `89 50 
 
 ![Niveau 2](n2.png)
 
-[List of file signatures]([http://a.com](https://en.wikipedia.org/wiki/List_of_file_signatures))
+[Liste des signatures](http://a.com](https://en.wikipedia.org/wiki/List_of_file_signatures "List")
 
 # 🛡️ Niveau 3
 
