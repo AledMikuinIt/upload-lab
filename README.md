@@ -104,7 +104,7 @@ qui serve le fichier avec `Content-Type: image/svg+xml` malgré le bypass MIME m
 ce qui serait une mauvaise pratique.
 
 ### Exemple Polyglotte
-Ici j'ai modifié le svg pour lui donner une signature (magic bytes) png `89 50 4E 47 0D 0A 1A 0A`.
+Ici j'ai modifié le svg pour lui donner une signature (magic bytes) png `89 50 4E 47 0D 0A 1A 0A` au tout début du fichier.
 
 ![Niveau 2](n2.png)
 
