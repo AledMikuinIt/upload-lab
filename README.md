@@ -34,7 +34,7 @@ Ce projet est un laboratoire de test avec plusieurs niveaux de vulnérabilités 
 1. Clonez ce dépôt :
 
    ```bash
-   git clone [https://github.com/AledMikuinIt/upload-lab.git](https://github.com/AledMikuinIt/upload-lab.git)
+   git clone https://github.com/AledMikuinIt/upload-lab.git
    cd upload-lab
    
 2. Installez les dépendances backend :
